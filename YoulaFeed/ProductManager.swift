@@ -84,7 +84,7 @@ private extension ProductManager {
                 imageUrlString: "https://www.vladtime.ru/uploads/posts/2018-07/1531558828_24296312_jpg_770x380_q85_crop-0h.jpg")
     ]
     
-    private func amplifiedList(of products: [Product]?) -> [Product] {
+    func amplifiedList(of products: [Product]?) -> [Product] {
         let initialProducts: [Product]
         if let loadedProducts = products {
             initialProducts = loadedProducts
