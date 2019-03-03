@@ -75,16 +75,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = UICollectionViewCell()
-        cell.backgroundColor = .red
-        cell.frame = CGRect(x: 20, y: 40, width: 50, height: 40)
-        
-        return cell
-    }
 }
 
 // MARK: - Collection View Delegate Flow Layout
