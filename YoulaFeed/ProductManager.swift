@@ -45,7 +45,7 @@ final class ProductManager {
         return Product(identifier: identifier ?? -1,
                        title: title ?? "",
                        price: price ?? 0,
-                       oldPrice: oldPrice ?? 0,
+                       oldPrice: oldPrice,
                        isFavorite: isFavorite ?? false,
                        isVerified: isVerified ?? false,
                        imageUrlString: imageUrlString)
