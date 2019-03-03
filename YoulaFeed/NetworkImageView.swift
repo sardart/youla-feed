@@ -11,39 +11,35 @@ import UIKit
 final class NetworkImageView: UIImageView {
     
     // MARK: - Properties
-
+    
     var url: URL?
     static var cache = [String: UIImage]()
     
     // MARK: - Public
-
+    
     func setURL(_ url: URL?, placeholderImage: UIImage? = nil) {
         guard let url = url, url.absoluteString != self.url?.absoluteString else {
             return
         }
         
         self.url = url
-        loadImage(from: url, placeholderImage: placeholderImage)
+        
+        if let cachedImage = NetworkImageView.cache[url.absoluteString] {
+            image = cachedImage
+        } else {
+            image = placeholderImage
+            loadImage(from: url)
+        }
     }
     
     // MARK: - Private
-
-    private func loadImage(from url: URL, placeholderImage: UIImage?) {
-        if let cachedImage = NetworkImageView.cache[url.absoluteString] {
-            image = cachedImage
-            return
-        }
-        
-        if let placeholderImage = placeholderImage {
-            image = placeholderImage
-        }
-        
+    
+    private func loadImage(from url: URL) {
         DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: url) else {
+            guard let data = try? Data(contentsOf: url), let loadedImage = UIImage(data: data) else {
                 return
             }
             
-            let loadedImage = UIImage(data: data)
             NetworkImageView.cache[url.absoluteString] = loadedImage
             
             DispatchQueue.main.async { [weak self] in
