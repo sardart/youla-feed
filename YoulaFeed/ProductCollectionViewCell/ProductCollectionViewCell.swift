@@ -37,7 +37,7 @@ class ProductCollectionViewCell: UICollectionViewCell, ProductCell {
         oldPriceLabel.attributedText = model.oldPrice
         backgroundImageView.setURL(model.imageURL)
         favoriteButton.isSelected = model.isFavorite
-        verifiedImageView.isHidden = model.isVerified
+        verifiedImageView.isHidden = !model.isVerified
         
         self.model = model
     }
